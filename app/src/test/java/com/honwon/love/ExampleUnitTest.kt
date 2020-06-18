@@ -13,9 +13,15 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-       val a = "고구마맛탕"
+
+        val a = "고구 마맛탕"
+        println(a)
+        println(a[9])
         var b = mutableListOf<String>("고","구","마","맞","탕")
+        println(b)
         println(b[1])
+        var c = mutableListOf<String>(a)
+        println(c)
 
     }
 }

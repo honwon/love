@@ -1,5 +1,6 @@
 package com.honwon.love
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -7,6 +8,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_setting.*
 import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +21,11 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_settings -> {
             // User chose the "Settings" item, show the app settings UI...
-            startActivity(Intent(this,SettingActivity::class.java))
+            var MSG = intent.getStringExtra("msgg")
+            val intent = Intent(this, SettingActivity::class.java)
+            intent.putExtra("msg", if(MSG ==null){first} else{MSG})
+            startActivity(intent)
+            finish()
             true
         }
         else -> {
@@ -29,21 +35,55 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+    val first = "너를 좋아해"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.my_toolbar))
 // 앱바 이름 아이콘
         val ab = supportActionBar
+        loadData()
+        var MSG = intent.getStringExtra("msgg")
+        saveData(MSG)
+
 
 //앱바 이름 등록
         ab!!.title = ""
 
-
         button.setOnClickListener {
-            var example = arrayOf(" ","너","를"," ","좋","아","해"," ","사","랑","해"," ","♥"," "," "," "," "," "," "," "," "," "," "," "," ")
+
+            //MSG?.let {saveData(MSG)}
+
+
+            var a :String =
+                if(MSG == null){
+                    first + "                            "
+                } else {
+                    MSG + "                               "
+                }
+            var example = arrayOf(" ","${a[0]}","${a[1]}","${a[2]}","${a[3]}","${a[4]}","${a[5]}","${a[6]}","${a[7]}","${a[8]}",
+                "${a[9]}","${a[10]}","${a[11]}","${a[12]}","${a[13]}","${a[14]}","${a[15]}","${a[16]}","${a[17]}","${a[18]}","${a[19]}","${a[20]}")
             fading_test_view.setTexts(example)
             fading_test_view.setTimeout(2000, TimeUnit.MILLISECONDS)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -87,7 +127,17 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    open fun saveData(data: String?) {
 
+        val pref = getSharedPreferences("pref", Context.MODE_PRIVATE);
+        val editor = pref.edit()
+        editor.putString("KEY_DATA", data)
+        editor.apply()
+    }
 
+    open fun loadData() {
+        val pref = getSharedPreferences("pref", Context.MODE_PRIVATE)
+        val MSG = pref.getString("KET_DATA","")
+    }
 
 }
