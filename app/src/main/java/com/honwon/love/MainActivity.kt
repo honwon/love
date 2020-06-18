@@ -1,30 +1,43 @@
 package com.honwon.love
 
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Vibrator
-import android.system.Os.remove
-import android.view.Gravity
-import android.view.MotionEvent
-import android.view.View
-import android.widget.Toast
+import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
-import java.util.Timer
 import java.util.concurrent.TimeUnit
-import kotlin.concurrent.schedule
 
 class MainActivity : AppCompatActivity() {
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.actionbar_actions, menu) ;
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.action_settings -> {
+            // User chose the "Settings" item, show the app settings UI...
+            startActivity(Intent(this,SettingActivity::class.java))
+            true
+        }
+        else -> {
+            // If we got here, the user's action was not recognized.
+            // Invoke the superclass to handle it.
+            super.onOptionsItemSelected(item)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setSupportActionBar(findViewById(R.id.my_toolbar))
+// 앱바 이름 아이콘
+        val ab = supportActionBar
 
-
-
-
+//앱바 이름 등록
+        ab!!.title = ""
 
 
         button.setOnClickListener {
