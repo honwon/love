@@ -23,9 +23,9 @@ class MainActivity : AppCompatActivity() {
             // User chose the "Settings" item, show the app settings UI...
             var MSG = intent.getStringExtra("msgg")
             val intent = Intent(this, SettingActivity::class.java)
-            intent.putExtra("msg", if(MSG ==null){first} else{MSG})
+            intent.putExtra("msg", if(MSG ==null){"너를 좋아해"} else{MSG})
             startActivity(intent)
-            finish()
+
             true
         }
         else -> {
@@ -36,7 +36,10 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    val first = "너를 좋아해"
+
+
+
+    val preference by lazy {getSharedPreferences("PrefExActivity", Context.MODE_PRIVATE)}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,22 +47,28 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.my_toolbar))
 // 앱바 이름 아이콘
         val ab = supportActionBar
-        loadData()
-        var MSG = intent.getStringExtra("msgg")
-        saveData(MSG)
+
+
+
+
+
+
+
 
 
 //앱바 이름 등록
         ab!!.title = ""
 
         button.setOnClickListener {
+            var MSG = intent.getStringExtra("msgg")
+
 
             //MSG?.let {saveData(MSG)}
 
 
             var a :String =
                 if(MSG == null){
-                    first + "                            "
+                  "너를 좋아해"  + "                              "
                 } else {
                     MSG + "                               "
                 }
@@ -137,7 +146,8 @@ class MainActivity : AppCompatActivity() {
 
     open fun loadData() {
         val pref = getSharedPreferences("pref", Context.MODE_PRIVATE)
-        val MSG = pref.getString("KET_DATA","")
+        val A = pref.getString("KEY_DATA","너를 좋아해")
+
     }
 
 }
