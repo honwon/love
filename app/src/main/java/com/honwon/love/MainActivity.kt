@@ -24,7 +24,9 @@ class MainActivity : AppCompatActivity() {
             var MSG = intent.getStringExtra("msgg")
             val intent = Intent(this, SettingActivity::class.java)
             intent.putExtra("msg", if(MSG ==null){"너를 좋아해"} else{MSG})
+            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
             startActivity(intent)
+            finish()
 
             true
         }
@@ -68,7 +70,7 @@ class MainActivity : AppCompatActivity() {
 
             var a :String =
                 if(MSG == null){
-                  "너를 좋아해"  + "                              "
+                    "너를 좋아해"  + "                              "
                 } else {
                     MSG + "                               "
                 }

@@ -13,28 +13,23 @@ class SettingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting)
 
+
+
         var msg = intent.getStringExtra("msg")
         editText.setText(msg)
 
         saveBtn.setOnClickListener {
-            saveData(editText.text.toString())
+
+
+
             val intent = Intent(this, MainActivity::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
             intent.putExtra("msgg",editText.text.toString())
             startActivity(intent)
             finish()
+
         }
 
     }
-    open fun saveData(data: String) {
 
-        val pref = getSharedPreferences("pref", Context.MODE_PRIVATE);
-        val editor = pref.edit()
-        editor.putString("KEY_DATA", data)
-        editor.apply()
-    }
-
-    open fun loadData() {
-        val pref = getSharedPreferences("pref", Context.MODE_PRIVATE)
-        val height = pref.getString("KET_DATA","")
-    }
 }
