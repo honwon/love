@@ -23,10 +23,10 @@ class SettingActivity : AppCompatActivity() {
 
 
             val intent = Intent(this, MainActivity::class.java)
-            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             intent.putExtra("msgg",editText.text.toString())
             startActivity(intent)
-            finish()
+
 
         }
 

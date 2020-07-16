@@ -6,6 +6,31 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+
+
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <!-- used for the back arrow on the action bar -->
+        <item name="actionBarTheme">@style/AppTheme.ActionBarTheme</item>
+
+
+        <item name="android:actionOverflowButtonStyle">@style/ActionButtonOverflow</item>
+
+        <!-- Support library compatibility -->
+        <item name="actionOverflowButtonStyle">@style/ActionButtonOverflow</item>
+    </style>
+
+    <style name="ActionButtonOverflow" parent="@style/Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">@android:color/white</item>
+    </style>
+
+    <style name="AppTheme.ActionBarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <!-- THIS is where you can color the arrow and the overflow button! -->
+        <!-- sets the color for the back arrow 변경할 색 적용 -->
+        <item name="colorControlNormal">#FFFFFF</item>
+    </style>
+    <style name="MyToolbarStyle" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:textColorSecondary">#333333</item>
     </style>
 
 </resources>
